@@ -43,7 +43,7 @@ return {
       -- no_agent_auth = false,
 
       -- The username to use for authenticating with the remote host
-      username = "root",
+      username = "attacker",
 
       -- Specify a SSH connection authentication file
       -- Default authentication file is "~/.ssh/id_rsa"
