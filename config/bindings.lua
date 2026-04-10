@@ -156,6 +156,7 @@ local mouse_bindings = {
     action = act.OpenLinkAtMouseCursor,
   },
   -- Move mouse will select text and copy to clipboard on release
+  -- Single click: select and copy
   {
     event = { Down = { streak = 1, button = "Left" } },
     mods = "NONE",
@@ -166,6 +167,18 @@ local mouse_bindings = {
     mods = "NONE",
     action = act.CompleteSelection("Clipboard"),
   },
+  -- Shift+Click: extend selection from anchor and copy
+  {
+    event = { Down = { streak = 1, button = "Left" } },
+    mods = "SHIFT",
+    action = act.ExtendSelectionToMouseCursor("Cell"),
+  },
+  {
+    event = { Up = { streak = 1, button = "Left" } },
+    mods = "SHIFT",
+    action = act.CompleteSelection("Clipboard"),
+  },
+  -- Drag to extend selection
   {
     event = { Drag = { streak = 1, button = "Left" } },
     mods = "NONE",
