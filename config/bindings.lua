@@ -140,6 +140,12 @@ local key_tables = {
 }
 
 local mouse_bindings = {
+  -- Right click to paste
+  {
+    event = { Up = { streak = 1, button = "Right" } },
+    mods = "NONE",
+    action = act.PasteFrom("Clipboard"),
+  },
   -- Ctrl-click will open the link under the mouse cursor
   {
     event = { Up = { streak = 1, button = "Left" } },

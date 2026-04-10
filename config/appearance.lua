@@ -1,13 +1,18 @@
 local wezterm = require("wezterm")
 local colors = require("colors.custom")
+local platform = require("utils.platform")
+
 -- local fonts = require('config.fonts')
 
 return {
   term = "xterm-256color",
-  animation_fps = 60,
-  max_fps = 60,
-  front_end = "WebGpu",
-  webgpu_power_preference = "HighPerformance",
+  -- 从 60 降至 30
+  animation_fps = 30,
+  max_fps = 30,
+  -- macOS 下尝试使用 OpenGL 替代 WebGPU
+  -- front_end = "WebGpu",
+  front_end = platform().is_mac and "OpenGL" or "WebGpu",
+  -- webgpu_power_preference = "HighPerformance",
 
   -- color scheme
   -- colors = colors,
@@ -15,7 +20,7 @@ return {
 
   -- background
   window_background_opacity = 1.00,
-  win32_system_backdrop = "Acrylic",
+  -- win32_system_backdrop = "Acrylic",
   window_background_gradient = {
     colors = { "#1D261B", "#261A25" },
     -- Specifices a Linear gradient starting in the top left corner.

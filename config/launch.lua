@@ -6,6 +6,7 @@ local options = {
 }
 
 if platform.is_win then
+  -- 默认pwsh则需要安装powershell7，建议安装
   options.default_prog = { "powershell" }
   options.launch_menu = {
     { label = " PowerShell v1", args = { "powershell" } },
@@ -22,20 +23,19 @@ if platform.is_win then
     },
   }
 elseif platform.is_mac then
-  options.default_prog = { "/opt/homebrew/bin/fish", "--login" }
+  options.default_prog = { "zsh", "--login" }
   options.launch_menu = {
-    { label = " Bash", args = { "bash", "--login" } },
-    { label = " Fish", args = { "/opt/homebrew/bin/fish", "--login" } },
-    { label = " Nushell", args = { "/opt/homebrew/bin/nu", "--login" } },
     { label = " Zsh", args = { "zsh", "--login" } },
+    { label = " Bash", args = { "bash", "--login" } },
+    { label = " Nushell", args = { "/opt/homebrew/bin/nu", "--login" } },
   }
 elseif platform.is_linux then
   options.default_prog = { "bash", "--login" }
   options.launch_menu = {
+    { label = " Zsh", args = { "zsh", "--login" } },
     { label = " Bash", args = { "bash", "--login" } },
     { label = " Fish", args = { "/opt/homebrew/bin/fish", "--login" } },
     { label = " Nushell", args = { "/opt/homebrew/bin/nu", "--login" } },
-    { label = " Zsh", args = { "zsh", "--login" } },
   }
 end
 
