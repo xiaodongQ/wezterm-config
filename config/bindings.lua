@@ -25,6 +25,9 @@ local keys = {
   -- copy/paste --
   { key = "c", mods = "CTRL|SHIFT", action = act.CopyTo("Clipboard") },
   { key = "v", mods = "CTRL|SHIFT", action = act.PasteFrom("Clipboard") },
+  -- macOS: Command+C/V for copy/paste
+  { key = "c", mods = "SUPER", action = act.CopyTo("Clipboard") },
+  { key = "v", mods = "SUPER", action = act.PasteFrom("Clipboard") },
 
   -- tabs --
   -- tabs: spawn+close
@@ -152,7 +155,7 @@ local mouse_bindings = {
     mods = "CTRL",
     action = act.OpenLinkAtMouseCursor,
   },
-  -- Move mouse will only select text and not copy text to clipboard
+  -- Move mouse will select text and copy to clipboard on release
   {
     event = { Down = { streak = 1, button = "Left" } },
     mods = "NONE",
@@ -161,14 +164,14 @@ local mouse_bindings = {
   {
     event = { Up = { streak = 1, button = "Left" } },
     mods = "NONE",
-    action = act.ExtendSelectionToMouseCursor("Cell"),
+    action = act.CompleteSelection("Clipboard"),
   },
   {
     event = { Drag = { streak = 1, button = "Left" } },
     mods = "NONE",
     action = act.ExtendSelectionToMouseCursor("Cell"),
   },
-  -- Triple Left click will select a line
+  -- Triple Left click will select a line and copy
   {
     event = { Down = { streak = 3, button = "Left" } },
     mods = "NONE",
@@ -177,9 +180,9 @@ local mouse_bindings = {
   {
     event = { Up = { streak = 3, button = "Left" } },
     mods = "NONE",
-    action = act.SelectTextAtMouseCursor("Line"),
+    action = act.CompleteSelection("Clipboard"),
   },
-  -- Double Left click will select a word
+  -- Double Left click will select a word and copy
   {
     event = { Down = { streak = 2, button = "Left" } },
     mods = "NONE",
@@ -188,7 +191,7 @@ local mouse_bindings = {
   {
     event = { Up = { streak = 2, button = "Left" } },
     mods = "NONE",
-    action = act.SelectTextAtMouseCursor("Word"),
+    action = act.CompleteSelection("Clipboard"),
   },
   -- Turn on the mouse wheel to scroll the screen
   {
