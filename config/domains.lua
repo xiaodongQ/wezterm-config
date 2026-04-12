@@ -6,7 +6,7 @@ return {
       multiplexing = "None",
 
       -- The name of this specific domain. Must be unique amongst
-      name = "Kali-linux",
+      name = "xd-linux",
 
       -- identifies the host:port pair of the remote server
       -- Can be a DNS name or an IP address with an optional
